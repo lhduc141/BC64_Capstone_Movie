@@ -2,12 +2,17 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AuthTemplate from "./templates/AuthTemplate";
 import LoginPage from "./pages/loginPage/LoginPage";
+import HomeTemplate from "./templates/HomeTemplate";
+import HomePage from "./pages/HomePage/HomePage";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         {/* home template  */}
+        <Route path="" element={<HomeTemplate />}>
+          <Route index element={<HomePage />} />
+        </Route>
 
         {/* auth template => xử lý các tác vụ khác: đăng kí, ....  */}
         <Route path="/auth" element={<AuthTemplate />}>

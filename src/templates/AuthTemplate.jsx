@@ -1,9 +1,18 @@
 import Lottie from "lottie-react";
-import React from "react";
-import { Outlet } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import iconLogin from "../assets/iconLogin.json";
+import { useSelector } from "react-redux";
 
 const AuthTemplate = () => {
+  const { infoUser } = useSelector((state) => state.userReducer);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (infoUser) {
+      navigate("/");
+    }
+  }, []);
   return (
     <div className="flex w-sreen h-screen">
       <div className="w-1/2 h-full">
