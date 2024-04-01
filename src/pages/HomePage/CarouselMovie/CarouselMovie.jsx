@@ -16,7 +16,11 @@ const CarouselMovie = () => {
   return (
     <Carousel afterChange={onChange}>
       <div>
-        <h3 style={contentStyle}>1</h3>
+        <img
+          src="https://movienew.cybersoft.edu.vn/hinhanh/ban-tay-diet-quy.png"
+          alt=""
+          className="w-full h-48"
+        />
       </div>
       <div>
         <h3 style={contentStyle}>2</h3>
