@@ -9,18 +9,20 @@ import { useNavigate } from "react-router-dom";
 import { message } from "antd";
 
 const LoginPage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); //hook dispatch
   const navigate = useNavigate();
   const formLogin = useFormik({
+    //formik fast check validation
     initialValues: {
       taiKhoan: "",
       matKhau: "",
     },
+    // check validation before dispatch
     onSubmit: async (value) => {
       dispatch(loginThunk(value))
         .then(() => {
           message.success("Đăng nhập thành công");
-          navigate("/");
+          navigate("/"); // change navigate without refres website
         })
         .catch((err) => {
           console.log(err);

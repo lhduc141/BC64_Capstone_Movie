@@ -4,7 +4,7 @@ import { logOutAction } from "../../redux/userReducer/userSlice";
 
 const UserNavLogin = () => {
   const dispatch = useDispatch();
-  const { infoUser } = useSelector((state) => state.userReducer);
+  const { infoUser } = useSelector((state) => state.userReducer); //get infoUser
   return (
     <div className="space-x-3">
       <span className="text-white text-xl">{infoUser.hoTen}</span>

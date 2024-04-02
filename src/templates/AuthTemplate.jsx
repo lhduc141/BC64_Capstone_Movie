@@ -8,6 +8,8 @@ const AuthTemplate = () => {
   const { infoUser } = useSelector((state) => state.userReducer);
   const navigate = useNavigate();
 
+  //check isLogin
+  //useEffect => chạy một lần khi login
   useEffect(() => {
     if (infoUser) {
       navigate("/");
