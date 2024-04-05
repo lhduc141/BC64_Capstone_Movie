@@ -1,8 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { movieSer } from "../../../service/movieService";
+import { useNavigate } from "react-router-dom";
 
 const ListMovie = () => {
+  //Hook
   const [dataMovieList, setDataMovieList] = useState([]);
+  const navigate = useNavigate();
+  useEffect(() => {
+    // call api
+    fetchListMovie();
+  }, []);
+
+  //Function
+  const navigatePageDetail = (id) => {
+    navigate(`detail-movie/${id}`);
+  };
   let fetchListMovie = async () => {
     try {
       const data = await movieSer.getListMovie();
@@ -14,19 +26,19 @@ const ListMovie = () => {
       console.log("err: ", err);
     }
   };
-
-  useEffect(() => {
-    // call api
-    fetchListMovie();
-  }, []);
-
   const renderListMovie = () => {
     // optional chaining operator
     // dataMovieList ? "" : ""
 
     return dataMovieList?.map((movie) => {
       return (
-        <div key={movie.maPhim} className="border rounded">
+        <div
+          onClick={() => {
+            navigatePageDetail(movie.maPhim);
+          }}
+          key={movie.maPhim}
+          className="border rounded"
+        >
           <div className="h-96">
             {/* img  */}
             <img
