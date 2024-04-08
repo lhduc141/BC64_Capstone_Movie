@@ -1,12 +1,11 @@
-import axios from "axios";
+// import axios from "axios";
 import { useFormik } from "formik";
 import React from "react";
 import * as yup from "yup";
-import { userService } from "../../service/userService";
 import { useDispatch } from "react-redux";
 import { loginThunk } from "../../redux/userReducer/userThunk";
 import { useNavigate } from "react-router-dom";
-import { message } from "antd";
+// import { message } from "antd";
 
 const LoginPage = () => {
   const dispatch = useDispatch(); //hook dispatch
@@ -18,15 +17,11 @@ const LoginPage = () => {
       matKhau: "",
     },
     // check validation before dispatch
-    onSubmit: async (value) => {
-      dispatch(loginThunk(value))
-        .then(() => {
-          message.success("Đăng nhập thành công");
-          navigate("/"); // change navigate without refres website
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    onSubmit: (value) => {
+      const navigateCus = () => {
+        navigate('/');
+      };
+      dispatch(loginThunk({ value, navigateCus }));
     },
     validationSchema: yup.object().shape({
       taiKhoan: yup
@@ -49,7 +44,7 @@ const LoginPage = () => {
       >
         <h3 className="text-2xl font-medium">Form đăng nhập</h3>
         <div>
-          <label className="text-sm font-medium" htmlFor="">
+          <label className="text-sm font-medium" htmlFor="taiKhoan">
             Đăng nhập
           </label>
           <input
@@ -58,19 +53,21 @@ const LoginPage = () => {
             id="taiKhoan"
             className="border rounded p-2 w-full"
             onChange={formLogin.handleChange}
+            value={formLogin.values.taiKhoan}
           />
           <p className="text-red-500 h-3">{formLogin.errors.taiKhoan}</p>
         </div>
         <div>
-          <label className="text-sm font-medium" htmlFor="">
+          <label className="text-sm font-medium" htmlFor="matKhau">
             Mật khẩu
           </label>
           <input
-            type="text"
+            type="password"
             name="matKhau"
             id="matKhau"
             className="border rounded p-2 w-full"
             onChange={formLogin.handleChange}
+            value={formLogin.values.matKhau}
           />
         </div>
         <p className="text-red-500 h-3">{formLogin.errors.matKhau}</p>
