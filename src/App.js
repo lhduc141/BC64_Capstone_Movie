@@ -7,7 +7,8 @@ import HomePage from "./pages/HomePage/HomePage";
 import DetailPage from "./pages/DetailPage/DetailPage";
 import ScreenPage from "./pages/ScreenPage/ScreenPage";
 import Loading from "./components/Loading/Loading";
-
+import signupPage from './pages/signupPage/SignupPage'
+import SignUpPage from "./pages/signupPage/SignupPage";
 function App() {
   return (
     <BrowserRouter>
@@ -25,6 +26,7 @@ function App() {
         {/* auth template => xử lý các tác vụ khác: đăng kí, ....  */}
         <Route path="/auth" element={<AuthTemplate />}>
           <Route path="login" element={<LoginPage />} />
+          <Route path='signup' element={<SignUpPage/>} />
         </Route>
       </Routes>
     </BrowserRouter>
