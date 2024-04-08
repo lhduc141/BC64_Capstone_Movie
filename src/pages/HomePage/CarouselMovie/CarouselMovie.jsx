@@ -44,7 +44,7 @@ const CarouselMovie = () => {
         }}
         className="absolute right-10 top-1/3 text-white"
       >
-        <i class="fa fa-angle-right"></i>
+        <i className="fa fa-angle-right"></i>
       </button>
       <button
         onClick={() => {
@@ -52,7 +52,7 @@ const CarouselMovie = () => {
         }}
         className="absolute left-10 top-1/3 text-white"
       >
-        <i class="fa fa-angle-left"></i>
+        <i className="fa fa-angle-left"></i>
       </button>
     </div>
   );
