@@ -13,7 +13,11 @@ const UserNavLogOut = () => {
       >
         Đăng Nhập
       </button>
-      <button className="bg-green-600 text-white p-2 rounded">Đăng Ký</button>
+      <button 
+      onClick={() => {
+        navigate("/auth/signup");
+      }}
+      className="bg-green-600 text-white p-2 rounded">Đăng Ký</button>
     </div>
   );
 };
