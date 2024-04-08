@@ -122,7 +122,7 @@ const SignUpPage = () => {
                         id="email"
                         name="email"
                         type="email"
-                        onChange={formSignup.handleChange}
+                        onChange={formSignup.handleChange}  
                         value={formSignup.values.email}
                         className="border rounded p-2 w-full"
                     />
