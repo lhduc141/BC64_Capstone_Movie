@@ -17,4 +17,8 @@ export const movieSer = {
     let uri = `/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${idMovie}`;
     return http.get(uri);
   },
+  getListChair: (maLichChieu) => {
+    let uri = `/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`;
+    return http.get(uri);
+  },
 };
