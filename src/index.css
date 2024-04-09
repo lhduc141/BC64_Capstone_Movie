@@ -1,3 +1,103 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.footer {
+  background-color: #0a2029;
+  box-shadow: 0 -2px 4px #fff;
+  padding-top: 40px;
+  margin-top: 80px;
+  color: #bbbbbb;
+}
+
+.footer__top {
+  padding-bottom: 60px;
+}
+
+.col {
+  h3 {
+    padding-left: 12px;
+    margin-bottom: 12px;
+    font-weight: bold;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      height: 100%;
+      left: 0;
+      width: 3px;
+      background-color: #fb4226;
+    }
+  }
+}
+
+.col-content ul li {
+  line-height: 2.2;
+}
+
+.col-content ul li a {
+  font-size: 0.8rem;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+.col-content ul li a:hover {
+  color: #fff;
+}
+
+.col-content ul li a svg {
+  color: #7ed321;
+}
+
+.social .social__item {
+  font-size: 2rem;
+  margin-right: 12px;
+  transition: 0.3s;
+}
+
+.social .social__item:hover {
+  color: #fff;
+}
+
+.mobile-app .app__item {
+  font-size: 30px;
+  margin-left: 8px;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.mobile-app .app__item:hover {
+  color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+  .mobile-app {
+    flex-direction: row;
+  }
+  .mobile-app .app__item {
+    font-size: 2.5rem;
+  }
+}
+
+.footer__bot {
+  border-top: 1px solid #636363;
+  padding: 16px 0;
+  font-size: 1.1rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .footer {
+    margin-top: 0px;
+    padding-top: 10px;
+  }
+  .footer__top {
+    padding-bottom: 20px;
+  }
+  .footer__bot {
+    padding: 16px 0;
+    font-size: 14px;
+  }
+}
