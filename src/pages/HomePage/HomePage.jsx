@@ -8,7 +8,7 @@ const HomePage = () => {
     <div>
       <CarouselMovie />
       <ListMovie />
-      <Appdownload/>
+      <Appdownload />
     </div>
   );
 };

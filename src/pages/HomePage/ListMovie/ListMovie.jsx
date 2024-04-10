@@ -74,11 +74,11 @@ const ListMovie = () => {
                 movie.maPhim === indexHover && isHovered ? "none" : "block",
             }}
           >
-            <p className="font-medium text-[1rem]">
+            <p className="font-medium text-[1rem] w-full">
               <span className="px-1.5 py-0.5 mr-2 border rounded text-white bg-red-500">
                 BC64
               </span>
-              <span className="text-[1.5rem] align-middle">
+              <span className="text-[1.2rem] align-middle">
                 {movie.tenPhim}
               </span>
             </p>
@@ -104,7 +104,7 @@ const ListMovie = () => {
 
   return (
     <div className="container max-w-7xl mx-auto py-5">
-      <div className="m-12 py-7">
+      <div className="mx-12 py-7">
         {/* Danh sách phim */}
         <div className="grid grid-cols-4 gap-9 ">{renderListMovie()}</div>
       </div>

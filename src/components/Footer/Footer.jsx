@@ -12,7 +12,7 @@ import { NavLink } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer !mt-0 !shadow-none">
       <div className="footer__top container mx-auto flex flex-wrap">
         <div className="basis-full px-6 pt-4 sm:basis-6/12 md:px-0 lg:basis-1/5 col uppercase">
           <h3 className="relative">Giới thiệu</h3>
@@ -92,7 +92,7 @@ function Footer() {
                   React-router-dom
                 </NavLink>
               </li>
-               
+
               <li>
                 <NavLink>
                   <MdKeyboardArrowRight className="inline-block align-middle" />
@@ -132,8 +132,14 @@ function Footer() {
           <div className="members">
             <h4 className="normal-case text-sm pb-1 pt-2">Triển khai dự án:</h4>
             <ul className="capitalize text-xs">
-              <li className="leading-5 flex items-center tracking-wide"><MdPerson className="inline-block mr-1 text-green-600" /> Lưu Hoàng Đức</li>
-              <li className="leading-5 flex items-center tracking-wide"><MdPerson className="inline-block mr-1 text-green-600" /> Nguyễn Quang Minh</li>
+              <li className="leading-5 flex items-center tracking-wide">
+                <MdPerson className="inline-block mr-1 text-green-600" /> Lưu
+                Hoàng Đức
+              </li>
+              <li className="leading-5 flex items-center tracking-wide">
+                <MdPerson className="inline-block mr-1 text-green-600" /> Nguyễn
+                Quang Minh
+              </li>
             </ul>
           </div>
         </div>

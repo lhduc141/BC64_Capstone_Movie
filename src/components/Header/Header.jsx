@@ -43,7 +43,7 @@ const Header = () => {
 
   return (
     <div
-      className={`bg-white py-3 sticky top-0 z-40 ${
+      className={`bg-white py-3 sticky top-0 z-40 shadow-lg ${
         isScrolled ? "bg-opacity-70" : ""
       }`}
     >

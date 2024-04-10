@@ -18,10 +18,15 @@ const DetailPageSchedule = ({ idMovie }) => {
     } catch (err) {}
   };
   const renderHeThongRap = () => {
+    console.log(dataHeThongRap);
     return dataHeThongRap.map((data, i) => {
       return {
         key: i,
-        label: data.tenHeThongRap,
+        label: (
+          <div>
+            <img src={data.logo} alt="" className="h-10" />
+          </div>
+        ),
         children: renderCumRapChieu(data.cumRapChieu),
       };
     });
@@ -29,8 +34,10 @@ const DetailPageSchedule = ({ idMovie }) => {
   const renderCumRapChieu = (dataCumRapChieu) => {
     return dataCumRapChieu?.map((data, index) => {
       return (
-        <div className="p-3 border my-5" key={index}>
-          <p className="text-xl">{data.tenCumRap}</p>
+        <div className="p-5 border my-5 " key={index}>
+          <p className="text-xl mb-5 text-green-600 font-bold">
+            {data.tenCumRap}
+          </p>
           <div>{renderLichChieuPhim(data.lichChieuPhim)}</div>
         </div>
       );
@@ -39,19 +46,21 @@ const DetailPageSchedule = ({ idMovie }) => {
   const renderLichChieuPhim = (dataLcp) => {
     return dataLcp?.map((data, index) => {
       return (
-        <NavLink
-          to={`/screen-movie/${data.maLichChieu}`}
-          className="border p-2 mr-3 mt-2"
-          key={index}
-        >
-          {data.ngayChieuGioChieu}
-        </NavLink>
+        <div className="inline text-white">
+          <NavLink
+            to={`/screen-movie/${data.maLichChieu}`}
+            className="border p-2 mr-3 mt-2 !w-20 rounded-lg !bg-gray-200 !text-red-500 font-medium"
+            key={index}
+          >
+            {data.ngayChieuGioChieu}
+          </NavLink>
+        </div>
       );
     });
   };
 
   return (
-    <div className="container mx-auto max-w-7xl py-8">
+    <div className="container mx-auto max-w-7xl h-[35rem] py-10 px-10 bg-white rounded-xl">
       <Tabs
         defaultActiveKey="1"
         items={renderHeThongRap()}
