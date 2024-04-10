@@ -1,29 +1,34 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ["./src/**/*.{html,js,jsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        // Phần custom
+      },
+      height: {
+        100: "800px",
+        99 :  "680px"
+       },
+      container: {
+        width: "100%",
+        padding: {
+          DEFAULT: "10px",
+        },
+        screens: {
+          "xs": "576px",
+          'sm': '640px',
+          'md': '768px',
+          'lg': '1024px',
+          'xl': '1280px',
+        }
+      }
+    },
   },
-  plugins: [],
-};
-
-//B1: npm instal -D tailwindcss
-
-//B2: npx tailwindcss init
-
-//B3: input css
-// @tailwind base;
-// @tailwind components;
-// @tailwind utilities;
-
-//B4: change in file tailwind.config.js
-// /** @type {import('tailwindcss').Config} */
-// module.exports = {
-//   content: [
-//     "./src/**/*.{js,jsx,ts,tsx}",
-//   ],
-//   theme: {
-//     extend: {},
-//   },
-//   plugins: [],
-// }
+  plugins: [
+    
+  ],
+  
+  // corePlugins: {
+  //   preflight: false,
+  // }, // Tránh đè css
+}
