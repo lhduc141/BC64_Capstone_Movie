@@ -6,7 +6,6 @@ export const getListChairThunk = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       const data = await movieSer.getListChair(payload);
-      console.log("🚀 ~ data:", data);
       return data.data.content;
     } catch (err) {
       return rejectWithValue(err);
