@@ -5,7 +5,7 @@ import Appdownload from "../../components/AppDownload/AppDownload";
 
 const HomePage = () => {
   return (
-    <div>
+    <div style={{ backgroundColor: "#fdfcf0" }}>
       <CarouselMovie />
       <ListMovie />
       <Appdownload />

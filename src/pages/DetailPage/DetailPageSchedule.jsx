@@ -60,7 +60,10 @@ const DetailPageSchedule = ({ idMovie }) => {
   };
 
   return (
-    <div className="container mx-auto max-w-7xl h-[35rem] py-10 px-10 bg-white rounded-xl">
+    <div
+      className="container mx-auto max-w-7xl h-[35rem] py-10 px-10 rounded-xl"
+      style={{ backgroundColor: "#fdfcf0" }}
+    >
       <Tabs
         defaultActiveKey="1"
         items={renderHeThongRap()}
