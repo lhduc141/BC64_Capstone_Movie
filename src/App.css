@@ -36,3 +36,6 @@
     transform: rotate(360deg);
   }
 }
+.ant-tabs-tab.ant-tabs-tab-active .parent__tab {
+   color: red !important; 
+}

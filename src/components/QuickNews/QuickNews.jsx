@@ -193,9 +193,9 @@ const QuickNews = () => {
     const { className } = props || {};
     const { image, title, content, like, cmt } = props.content || {};
     return (
-      <div className={className}>
+      <div className={`${className} pb-14`}>
         <img
-          className="card-image w-full rounded-md mb-2 shadow-md"
+          className="card-image w-full h-52 rounded-md mb-2 shadow-md"
           src={image}
           alt="img"
         />
@@ -203,7 +203,7 @@ const QuickNews = () => {
           <h3 className="card-title text-red-700 font-bold pb-2 cursor-pointer text-sm md:text-base hover:text-slate-800 duration-300">
             {title}
           </h3>
-          <p className="card-sub-title text-neutral-600 text-xs md:text-sm pb-3 indent-2 h-20 overflow-hidden">
+          <p className="card-sub-title text-neutral-600 text-xs md:text-sm indent-2 h-14 overflow-hidden">
             {content}
           </p>
         </div>
@@ -251,7 +251,11 @@ const QuickNews = () => {
     );
   };
   const content_1 = {
-    label: <h3 className="parent__tab lg:text-">Điện ảnh 24h</h3>,
+    label: (
+      <h3 className="parent__tab text-[1.25rem] font-semibold hover:text-red-500 lg:text-">
+        Điện ảnh 24h
+      </h3>
+    ),
     key: 1,
     children: (
       <div className="flex flex-wrap">
@@ -287,7 +291,11 @@ const QuickNews = () => {
     ),
   };
   const content_2 = {
-    label: <h3 className="parent__tab">Review</h3>,
+    label: (
+      <h3 className="parent__tab text-[1.25rem] font-semibold hover:text-red-500">
+        Review
+      </h3>
+    ),
     key: 2,
     children: (
       <div className="flex flex-wrap">
@@ -323,7 +331,11 @@ const QuickNews = () => {
     ),
   };
   const content_3 = {
-    label: <h3 className="parent__tab">Khuyến mãi</h3>,
+    label: (
+      <h3 className="parent__tab text-[1.25rem] font-semibold hover:text-red-500">
+        Khuyến mãi
+      </h3>
+    ),
     key: 3,
     children: (
       <div className="flex flex-wrap">
@@ -359,7 +371,7 @@ const QuickNews = () => {
     ),
   };
   return (
-    <div className="booking__news container mx-auto" id="quickNews">
+    <div className="booking__news container mx-auto pb-16" id="quickNews">
       <Tabs
         animated
         className="news__content w-full lg:w-4/5 mx-auto"
