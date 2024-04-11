@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getListChairThunk } from "./movieThunk";
+import { getListChairThunk, getSrceenInformation } from "./movieThunk";
 
 const initialState = {
   listChair: [],
   listBeingSelectedChair: [],
+  filmInformation: [],
+  listAcceptChair: [],
 };
 
 const movieSlice = createSlice({
@@ -28,9 +30,12 @@ const movieSlice = createSlice({
     builder
       .addCase(getListChairThunk.fulfilled, (state, action) => {
         let infoScreenPage = action.payload;
-        console.log("🚀 ~ .addCase ~ infoScreenPage:", infoScreenPage);
+
         let listChair = infoScreenPage.danhSachGhe?.slice(0, 100);
+        let screenInfor = infoScreenPage.thongTinPhim;
+
         state.listChair = listChair;
+        state.filmInformation = screenInfor;
       })
       .addCase(getListChairThunk.rejected, (state, action) => {
         state.listChair = action.payload;
