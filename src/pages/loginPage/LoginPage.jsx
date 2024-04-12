@@ -5,7 +5,6 @@ import * as yup from "yup";
 import { useDispatch } from "react-redux";
 import { loginThunk } from "../../redux/userReducer/userThunk";
 import { useNavigate } from "react-router-dom";
-// import { message } from "antd";
 
 const LoginPage = () => {
   const dispatch = useDispatch(); //hook dispatch
@@ -19,7 +18,7 @@ const LoginPage = () => {
     // check validation before dispatch
     onSubmit: (value) => {
       const navigateCus = () => {
-        navigate('/');
+        navigate("/");
       };
       dispatch(loginThunk({ value, navigateCus }));
     },
@@ -45,7 +44,7 @@ const LoginPage = () => {
         <h3 className="text-2xl font-medium">Form đăng nhập</h3>
         <div>
           <label className="text-sm font-medium" htmlFor="taiKhoan">
-            Đăng nhập
+            Tài khoản
           </label>
           <input
             type="text"
@@ -72,7 +71,10 @@ const LoginPage = () => {
         </div>
         <p className="text-red-500 h-3">{formLogin.errors.matKhau}</p>
 
-        <button className="bg-green-500 text-white rounded p-2 mt-2">
+        <button
+          type="submit"
+          className="bg-green-500 text-white rounded p-2 mt-2"
+        >
           Đăng nhập
         </button>
       </form>

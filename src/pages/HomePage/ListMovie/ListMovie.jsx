@@ -21,7 +21,6 @@ const ListMovie = () => {
   let fetchListMovie = async () => {
     try {
       const data = await movieSer.getListMovie();
-      console.log("data List: ", data);
 
       let movieList = data.data.content;
       setDataMovieList(movieList);

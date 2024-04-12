@@ -59,7 +59,6 @@ const CarouselMovie = () => {
     try {
       const dataBanner = await movieSer.getBannerMovie();
       let newDataBanner = dataBanner.data.content;
-      console.log("newDataBanner: ", newDataBanner);
 
       setDataBan(newDataBanner);
     } catch (error) {

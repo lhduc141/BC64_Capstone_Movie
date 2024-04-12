@@ -6,7 +6,7 @@ import QuickNews from "./QuickNews/QuickNews";
 
 const HomePage = () => {
   return (
-    <div style={{ backgroundColor: "#fdfcf0" }}>
+    <div className="z-20" style={{ backgroundColor: "#fdfcf0" }}>
       <CarouselMovie />
       <ListMovie />
       <QuickNews />

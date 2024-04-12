@@ -6,13 +6,13 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const buyTicketThunk = createAsyncThunk(
   "BuyTicketThunk/buyTicketThunk",
-  async ({ payload, authorization }, { rejectWithValue }) => {
-    console.log("payload check: ", payload);
+  async ({ payload, authorization, navigateCus }, { rejectWithValue }) => {
     try {
       const data = await ticketService.postTicket({
         payload: payload,
         authorization: authorization,
       });
+      navigateCus();
       message.success("Đặt thành công");
       return data;
     } catch (error) {

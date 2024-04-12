@@ -7,22 +7,22 @@ import HomePage from "./pages/HomePage/HomePage";
 import DetailPage from "./pages/DetailPage/DetailPage";
 import ScreenPage from "./pages/ScreenPage/ScreenPage";
 import Loading from "./components/Loading/Loading";
- 
+
 import SignUpPage from "./pages/signupPage/SignupPage";
 import CheckUser from "./HOC/CheckUser";
- 
+
 function App() {
   return (
     <BrowserRouter>
       {/* Always on  */}
-      {/* <Loading /> */}
+      <Loading />
 
       <Routes>
         {/* home template  */}
         <Route path="" element={<HomeTemplate />}>
           <Route index element={<HomePage />} />
           <Route path="detail-movie/:idMovie" element={<DetailPage />} />
-           
+
           <Route
             path="screen-movie/:maLichChieu"
             element={

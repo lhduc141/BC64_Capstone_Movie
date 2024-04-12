@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ticketService } from "../../../service/ticketService";
 import { buyTicketThunk } from "../../../redux/BuyTicketReducer/buyTicketThunk";
+import { useNavigate } from "react-router-dom";
 
 const BuyTicket = ({ maLichChieu }) => {
   //Call api
@@ -12,6 +13,7 @@ const BuyTicket = ({ maLichChieu }) => {
     (state) => state.movieSlice
   );
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const maLichChieuInt = parseInt(maLichChieu);
   const { infoUser } = useSelector((state) => state.userReducer);
   const acceptTicket = () => {
@@ -21,8 +23,15 @@ const BuyTicket = ({ maLichChieu }) => {
     };
     console.log(typeof maLichChieuInt);
     let authorization = `Bearer ${infoUser.accessToken}`;
+    const navigateCus = () => {
+      navigate("/");
+    };
     dispatch(
-      buyTicketThunk({ payload: initialValue, authorization: authorization })
+      buyTicketThunk({
+        payload: initialValue,
+        authorization: authorization,
+        navigateCus,
+      })
     );
   };
   const transferSelectToAccess = () => {

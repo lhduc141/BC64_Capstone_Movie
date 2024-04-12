@@ -1,9 +1,13 @@
 import axios from "axios";
-
+import { store } from "../redux/store";
+import {
+  turnOffLoading,
+  turnOnLoading,
+} from "../redux/loadingReducer/loadingSlice";
 export const BASE_URL = "https://movienew.cybersoft.edu.vn";
-export const TOKEN_CYBER =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA2NCIsIkhldEhhblN0cmluZyI6IjAxLzA5LzIwMjQiLCJIZXRIYW5UaW1lIjoiMTcyNTE0ODgwMDAwMCIsIm5iZiI6MTY5NTkyMDQwMCwiZXhwIjoxNzI1Mjk2NDAwfQ.36nQu-fyhBElKov0sWvrvwuO832nQWmfRIHcRVPB7Mw";
 export const MA_NHOM = "GP09";
+export const TOKEN_CYBER =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA2NCIsIkhldEhhblN0cmluZyI6IjA4LzA5LzIwMjQiLCJIZXRIYW5UaW1lIjoiMTgyNTc1MzYwMDAwMCIsIm5iZiI6MTY5NTkyMDQwMCwiZXhwIjoxNzI1OTAxMjAwfQ.OKsfWEoxxNGCfaW1Y-0XJaFv5CZv6A2aoWlqLkFT-TA";
 
 export const http = axios.create({
   baseURL: BASE_URL,
@@ -12,10 +16,14 @@ export const http = axios.create({
   },
 });
 
-// Add a request interceptor
-axios.interceptors.request.use(
+// ----------------------------------------------------------------------------------
+// RREQUEST interceptor
+
+// => Use this function for turn on loading animation
+http.interceptors.request.use(
   function (config) {
     // Do something before request is sent
+    store.dispatch(turnOnLoading());
     return config;
   },
   function (error) {
@@ -24,16 +32,22 @@ axios.interceptors.request.use(
   }
 );
 
-// Add a response interceptor
-axios.interceptors.response.use(
+// ----------------------------------------------------------------------------------
+// RESPONSE interceptor
+// => Use this function for turn off loading animation => "response request"
+http.interceptors.response.use(
   function (response) {
-    // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
+    setTimeout(() => {
+      store.dispatch(turnOffLoading());
+    }, 1000);
     return response;
   },
   function (error) {
-    // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
+    setTimeout(() => {
+      store.dispatch(turnOffLoading());
+    }, 1000);
     return Promise.reject(error);
   }
 );
