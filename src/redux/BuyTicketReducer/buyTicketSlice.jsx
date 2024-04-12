@@ -1,9 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { buyTicketThunk } from "./buyTicketThunk";
 
-const initialState = {
-  listChoosenChair: [],
-};
+const initialState = {};
 
 const buyTicketSlice = createSlice({
   name: "buyTicketSlice",
@@ -14,7 +12,7 @@ const buyTicketSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(buyTicketThunk.fulfilled, (state, action) => {
-        console.log(action.payload);
+        console.log("action.payload check: ");
       })
       .addCase(buyTicketThunk.rejected, (state) => {});
   },

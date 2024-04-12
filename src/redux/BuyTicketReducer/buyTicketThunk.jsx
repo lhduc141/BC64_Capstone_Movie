@@ -1,19 +1,22 @@
 // buyTicketThunk.js
 
+import { message } from "antd";
 import { ticketService } from "../../service/ticketService";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const buyTicketThunk = createAsyncThunk(
   "BuyTicketThunk/buyTicketThunk",
   async ({ payload, authorization }, { rejectWithValue }) => {
-    console.log("check");
+    console.log("payload check: ", payload);
     try {
-      console.log(payload, "and ", authorization);
-      const data = await ticketService.postTicket(payload.value, authorization);
-      console.log("data:", data);
+      const data = await ticketService.postTicket({
+        payload: payload,
+        authorization: authorization,
+      });
+      message.success("Đặt thành công");
       return data;
     } catch (error) {
-      console.log("error:", error.response.data); // Log error response data
+      console.log("error"); // Log error response data
       return rejectWithValue(error.response.data); // Return error response data
     }
   }

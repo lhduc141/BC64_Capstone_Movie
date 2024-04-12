@@ -8,23 +8,39 @@ import { buyTicketThunk } from "../../../redux/BuyTicketReducer/buyTicketThunk";
 
 const BuyTicket = ({ maLichChieu }) => {
   //Call api
-  const { listBeingSelectedChair, filmInformation } = useSelector(
+  const { listBeingSelectedChair, filmInformation, listChair } = useSelector(
     (state) => state.movieSlice
   );
   const dispatch = useDispatch();
+  const maLichChieuInt = parseInt(maLichChieu);
   const { infoUser } = useSelector((state) => state.userReducer);
-  console.log(infoUser);
   const acceptTicket = () => {
     let initialValue = {
-      maLichChieu: maLichChieu,
-      danhSachVe: [],
+      maLichChieu: maLichChieuInt,
+      danhSachVe: transferSelectToAccess(),
     };
+    console.log(typeof maLichChieuInt);
     let authorization = `Bearer ${infoUser.accessToken}`;
     dispatch(
       buyTicketThunk({ payload: initialValue, authorization: authorization })
     );
   };
-  console.log("maLichChieu: ", maLichChieu, " type", maLichChieu.typeOf);
+  const transferSelectToAccess = () => {
+    let list = [];
+    listChair?.map((chair, i) => {
+      let index = listBeingSelectedChair.findIndex(
+        (beingSelectedChair) => chair.maGhe == beingSelectedChair.maGhe
+      );
+      if (index !== -1) {
+        list.push({
+          maGhe: chair.maGhe,
+          giaVe: chair.giaVe,
+        });
+      }
+    });
+    return list;
+  };
+  console.log();
 
   //main function
   const fetchListBeingSelectedChair = () => {
