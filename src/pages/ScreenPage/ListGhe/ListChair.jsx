@@ -52,7 +52,7 @@ const ListChair = ({ maLichChieu }) => {
           }`}
           key={i}
         >
-          {chair.tenGhe}
+          {chair.maGhe}
           <hr />
         </button>
       );

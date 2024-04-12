@@ -3,20 +3,28 @@ import { useFormik } from "formik";
 import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
+import { ticketService } from "../../../service/ticketService";
+import { buyTicketThunk } from "../../../redux/BuyTicketReducer/buyTicketThunk";
 
 const BuyTicket = ({ maLichChieu }) => {
   //Call api
   const { listBeingSelectedChair, filmInformation } = useSelector(
     (state) => state.movieSlice
   );
-  console.log(listBeingSelectedChair);
+  const dispatch = useDispatch();
   const { infoUser } = useSelector((state) => state.userReducer);
-  const acceptTicket = useFormik({
-    initialValue: {
+  console.log(infoUser);
+  const acceptTicket = () => {
+    let initialValue = {
       maLichChieu: maLichChieu,
-      danhSachVe: { listBeingSelectedChair },
-    },
-  });
+      danhSachVe: [],
+    };
+    let authorization = `Bearer ${infoUser.accessToken}`;
+    dispatch(
+      buyTicketThunk({ payload: initialValue, authorization: authorization })
+    );
+  };
+  console.log("maLichChieu: ", maLichChieu, " type", maLichChieu.typeOf);
 
   //main function
   const fetchListBeingSelectedChair = () => {
@@ -28,9 +36,7 @@ const BuyTicket = ({ maLichChieu }) => {
         listChair = listChair + ` ; ${chair.stt} (${chair.loaiGhe})`;
       }
     });
-    if (listBeingSelectedChair.length) {
-      console.log("yes");
-    } else console.log("no");
+
     if (listChair.length > 191) {
       return listChair.substring(0, 190) + " ...";
     } else return listChair;
