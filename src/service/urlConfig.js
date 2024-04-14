@@ -9,15 +9,10 @@ export const MA_NHOM = "GP09";
 export const TOKEN_CYBER =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA2NCIsIkhldEhhblN0cmluZyI6IjA4LzA5LzIwMjQiLCJIZXRIYW5UaW1lIjoiMTgyNTc1MzYwMDAwMCIsIm5iZiI6MTY5NTkyMDQwMCwiZXhwIjoxNzI1OTAxMjAwfQ.OKsfWEoxxNGCfaW1Y-0XJaFv5CZv6A2aoWlqLkFT-TA";
 
-const token = localStorage.getItem("token")?.toString();
-
 export const http = axios.create({
   baseURL: BASE_URL,
   headers: {
     TokenCybersoft: TOKEN_CYBER,
-    Authorization: "Bearer " + token,
-    "Content-Type": "application/json",
-    Accept: "application/json",
   },
 });
 

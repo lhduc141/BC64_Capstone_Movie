@@ -47,7 +47,7 @@ const ListChair = ({ maLichChieu }) => {
         onClick={() => dispatch(addChairAction(chair))}
         disabled={chair.daDat}
       >
-        {chair.maGhe}
+        {chair.stt}
       </button>
     );
   };

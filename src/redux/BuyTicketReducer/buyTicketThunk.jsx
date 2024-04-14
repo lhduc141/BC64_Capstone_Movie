@@ -8,6 +8,7 @@ export const buyTicketThunk = createAsyncThunk(
   "BuyTicketThunk/buyTicketThunk",
   async ({ payload, authorization, navigateCus }, { rejectWithValue }) => {
     try {
+      console.log(authorization);
       const data = await ticketService.postTicket({
         payload: payload,
         authorization: authorization,

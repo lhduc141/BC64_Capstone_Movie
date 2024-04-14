@@ -11,7 +11,9 @@ const buyTicketSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(buyTicketThunk.pending, (state, action) => {})
+      .addCase(buyTicketThunk.pending, (state, action) => {
+        console.log("pending check");
+      })
       .addCase(buyTicketThunk.fulfilled, (state, action) => {
         console.log("action.payload check: ");
       })

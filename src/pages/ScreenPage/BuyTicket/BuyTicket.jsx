@@ -11,13 +11,14 @@ const BuyTicket = ({ maLichChieu }) => {
   );
 
   const { infoUser } = useSelector((state) => state.userReducer);
+  console.log("BuyTicket ~ infoUser:", infoUser);
 
   const acceptTicket = () => {
     const initialValue = {
       maLichChieu: parseInt(maLichChieu),
       danhSachVe: transferSelectToAccess(),
     };
-    const authorization = `Bearer ` + localStorage.getItem("token");
+    const authorization = `Bearer ${infoUser.accessToken}`;
     const navigateCus = () => navigate("/");
     dispatch(
       buyTicketThunk({
