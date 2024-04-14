@@ -12,6 +12,8 @@ import SignUpPage from "./pages/signupPage/SignupPage";
 import CheckUser from "./HOC/CheckUser";
 import Profile from "./pages/Profile";
 import Multiplex from "./pages/Multiplex";
+import Appdownload from "./components/AppDownload/AppDownload";
+import QuickNews from "./pages/HomePage/QuickNews/QuickNews";
 
 function App() {
   return (
@@ -25,7 +27,8 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="detail-movie/:idMovie" element={<DetailPage />} />
           <Route path="multiplex" element={<Multiplex />} />
-
+          <Route path="tin-tuc" element={<QuickNews />} />
+          <Route path="ung-dung" element={<Appdownload />} />
           <Route
             path="screen-movie/:maLichChieu"
             element={
