@@ -195,7 +195,7 @@ const QuickNews = () => {
     return (
       <div className={`${className} pb-14`}>
         <img
-          className="card-image w-full h-52 rounded-md mb-2 shadow-md"
+          className="object-cover card-image w-full h-52 rounded-md mb-2 shadow-md"
           src={image}
           alt="img"
         />
@@ -228,7 +228,7 @@ const QuickNews = () => {
         <div className="flex cursor-pointer font-medium leading-4 hover:text-slate-800 hover:-translate-y-1 duration-300">
           <div className="basis-3/12">
             <img
-              className="w-full h-full rounded-sm"
+              className="w-full h-full rounded-sm object-cover"
               src={image}
               alt="hinh anh phim"
             />
@@ -374,7 +374,7 @@ const QuickNews = () => {
     <div className="booking__news container mx-auto pb-16" id="quickNews">
       <Tabs
         animated
-        className="news__content w-full lg:w-4/5 mx-auto"
+        className="news__content w-full  mx-auto"
         defaultActiveKey="1"
         centered
         items={[content_1, content_2, content_3]}

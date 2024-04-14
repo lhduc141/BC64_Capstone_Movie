@@ -1,31 +1,24 @@
-import { isDisabled } from "@testing-library/user-event/dist/utils";
-import { useFormik } from "formik";
 import React, { useEffect } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
-import { ticketService } from "../../../service/ticketService";
 import { buyTicketThunk } from "../../../redux/BuyTicketReducer/buyTicketThunk";
 import { useNavigate } from "react-router-dom";
 
 const BuyTicket = ({ maLichChieu }) => {
-  //Call api
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { listBeingSelectedChair, filmInformation, listChair } = useSelector(
     (state) => state.movieSlice
   );
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const maLichChieuInt = parseInt(maLichChieu);
+
   const { infoUser } = useSelector((state) => state.userReducer);
+
   const acceptTicket = () => {
-    let initialValue = {
-      maLichChieu: maLichChieuInt,
+    const initialValue = {
+      maLichChieu: parseInt(maLichChieu),
       danhSachVe: transferSelectToAccess(),
     };
-    console.log(typeof maLichChieuInt);
-    let authorization = `Bearer ${infoUser.accessToken}`;
-    const navigateCus = () => {
-      navigate("/");
-    };
+    const authorization = `Bearer ` + localStorage.getItem("token");
+    const navigateCus = () => navigate("/");
     dispatch(
       buyTicketThunk({
         payload: initialValue,
@@ -34,89 +27,68 @@ const BuyTicket = ({ maLichChieu }) => {
       })
     );
   };
-  const transferSelectToAccess = () => {
-    let list = [];
-    listChair?.map((chair, i) => {
-      let index = listBeingSelectedChair.findIndex(
-        (beingSelectedChair) => chair.maGhe == beingSelectedChair.maGhe
-      );
-      if (index !== -1) {
-        list.push({
-          maGhe: chair.maGhe,
-          giaVe: chair.giaVe,
-        });
-      }
-    });
-    return list;
-  };
-  console.log();
 
-  //main function
+  const transferSelectToAccess = () =>
+    listChair
+      ?.filter((chair) =>
+        listBeingSelectedChair.some(
+          (beingSelectedChair) => chair.maGhe === beingSelectedChair.maGhe
+        )
+      )
+      .map(({ maGhe, giaVe }) => ({ maGhe, giaVe }));
+
   const fetchListBeingSelectedChair = () => {
     let listChair = "Chair: ";
-    listBeingSelectedChair?.map((chair, i) => {
-      if (i == 0) {
-        listChair = listChair + `${chair.stt} (${chair.loaiGhe})`;
+    listBeingSelectedChair?.forEach((chair, i) => {
+      if (i === 0) {
+        listChair += `${chair.stt} (${chair.loaiGhe})`;
       } else {
-        listChair = listChair + ` ; ${chair.stt} (${chair.loaiGhe})`;
+        listChair += ` ; ${chair.stt} (${chair.loaiGhe})`;
       }
     });
-
-    if (listChair.length > 191) {
-      return listChair.substring(0, 190) + " ...";
-    } else return listChair;
-  };
-  const sumOfMoney = () => {
-    let sum = 0;
-    listBeingSelectedChair?.map((chair, i) => {
-      sum = sum + chair.giaVe;
-    });
-    return sum;
+    return listChair.length > 191
+      ? listChair.substring(0, 190) + " ..."
+      : listChair;
   };
 
-  // main fecth
+  const sumOfMoney = () =>
+    listBeingSelectedChair?.reduce((sum, chair) => sum + chair.giaVe, 0);
+
   return (
     <div
-      className="w-3/5 h-5/6 mt-3 p-2 rounded-md"
+      className="mt-3 p-2 m-5 rounded-md max-w-[500px] mx-auto"
       style={{ backgroundColor: "#0a2029" }}
     >
       <div className="h-[80%] text-white">
         <div className="text-center text-[1.5rem]">Thông tin vé</div>
         <div className="pb-2 mb-2 h-[92%]">
-          <div className="bg-white h-full text-black py-2 px-8  rounded-t-lg">
+          <div className="bg-white h-full text-black py-2 px-8 rounded-t-lg">
             <p className="text-[1.2rem] font-bold">
               Phim: {filmInformation.tenPhim}
             </p>
-
-            {/* Thời gian  */}
             <div className="pt-4">
               <p className=" font-bold">
-                <i class="fa-solid fa-clock"></i> Thời gian
+                <i className="fa-solid fa-clock"></i> Thời gian
               </p>
               <p>
                 {filmInformation.gioChieu} ~ {filmInformation.ngayChieu}
               </p>
             </div>
-
-            {/* Tên rạp  */}
             <div className="pt-4">
               <p className=" font-bold">
-                <i class="fa-solid fa-video"></i> Rạp
+                <i className="fa-solid fa-video"></i> Rạp
               </p>
               <p>{filmInformation.tenRap}</p>
             </div>
-            {/* Địa chỉ  */}
             <div className="pt-4">
               <p className=" font-bold">
-                <i class="fa-solid fa-video"></i> Địa chỉ
+                <i className="fa-solid fa-video"></i> Địa chỉ
               </p>
               <p>{filmInformation.diaChi}</p>
             </div>
-
-            {/* Số ghế đã đặt   */}
             <div className="pt-4">
               <p className=" font-bold">
-                <i class="fa-solid fa-couch"></i> Số ghế đã chọn
+                <i className="fa-solid fa-couch"></i> Số ghế đã chọn
               </p>
               <p>{fetchListBeingSelectedChair()}</p>
             </div>
@@ -134,12 +106,11 @@ const BuyTicket = ({ maLichChieu }) => {
           </div>
           <div className="py-4">
             <button
-              onClick={() => {
-                acceptTicket();
-              }}
-              className={`py-2 px-8 border rounded-2xl bg-red-500 font-bold text-[1.2rem] transition ease-in-out text-white hover:bg-red-700
-              ${listBeingSelectedChair.length ? "" : "cursor-not-allowed"}
-              `}
+              onClick={acceptTicket}
+              className={`py-2 px-8 border rounded-2xl bg-red-500 font-bold text-[1.2rem] transition ease-in-out text-white hover:bg-red-700 ${
+                listBeingSelectedChair.length ? "" : "cursor-not-allowed"
+              }`}
+              disabled={!listBeingSelectedChair.length}
             >
               Đặt
             </button>

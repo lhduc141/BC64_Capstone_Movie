@@ -10,6 +10,8 @@ import Loading from "./components/Loading/Loading";
 
 import SignUpPage from "./pages/signupPage/SignupPage";
 import CheckUser from "./HOC/CheckUser";
+import Profile from "./pages/Profile";
+import Multiplex from "./pages/Multiplex";
 
 function App() {
   return (
@@ -22,12 +24,21 @@ function App() {
         <Route path="" element={<HomeTemplate />}>
           <Route index element={<HomePage />} />
           <Route path="detail-movie/:idMovie" element={<DetailPage />} />
+          <Route path="multiplex" element={<Multiplex />} />
 
           <Route
             path="screen-movie/:maLichChieu"
             element={
               <CheckUser>
                 <ScreenPage />
+              </CheckUser>
+            }
+          />
+          <Route
+            path="profile/:taikhoan"
+            element={
+              <CheckUser>
+                <Profile />
               </CheckUser>
             }
           />

@@ -12,12 +12,15 @@ const movieSlice = createSlice({
   name: "movieSlice",
   initialState,
   reducers: {
+    clearChar: (state) => {
+      state.listBeingSelectedChair = [];
+    },
     addChairAction: (state, action) => {
       let ghe = action.payload;
       let index = state.listBeingSelectedChair?.findIndex(
-        (gheDangDat) => gheDangDat.maGhe == ghe.maGhe
+        (gheDangDat) => gheDangDat.maGhe === ghe.maGhe
       );
-      if (index != -1) {
+      if (index !== -1) {
         // nếu ghế đó đã tồn tại trong list ghế đang đặt thì xóa nó đi
         state.listBeingSelectedChair.splice(index, 1);
       } else {
@@ -43,6 +46,6 @@ const movieSlice = createSlice({
   },
 });
 
-export const { addChairAction } = movieSlice.actions;
+export const { addChairAction, clearChar } = movieSlice.actions;
 
 export default movieSlice.reducer;

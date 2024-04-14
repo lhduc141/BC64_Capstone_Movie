@@ -1,7 +1,10 @@
 import { Tabs } from "antd";
 import React, { useEffect, useState } from "react";
 import { movieSer } from "../../service/movieService";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import moment from "moment";
+import { useDispatch } from "react-redux";
+import { clearChar } from "../../redux/movieReducer/movieSlice";
 
 const DetailPageSchedule = ({ idMovie }) => {
   //   React redux
@@ -18,7 +21,6 @@ const DetailPageSchedule = ({ idMovie }) => {
     } catch (err) {}
   };
   const renderHeThongRap = () => {
-    console.log(dataHeThongRap);
     return dataHeThongRap.map((data, i) => {
       return {
         key: i,
@@ -43,25 +45,35 @@ const DetailPageSchedule = ({ idMovie }) => {
       );
     });
   };
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleChooseChar = (maLichChieu) => {
+    dispatch(clearChar());
+    navigate(`/screen-movie/${maLichChieu}`);
+  };
+
   const renderLichChieuPhim = (dataLcp) => {
-    return dataLcp?.map((data, index) => {
-      return (
-        <div className="inline text-white">
-          <NavLink
-            to={`/screen-movie/${data.maLichChieu}`}
-            className="border p-2 mr-3 mt-2 !w-20 rounded-lg !bg-gray-200 !text-red-500 font-medium"
-            key={index}
-          >
-            {data.ngayChieuGioChieu}
-          </NavLink>
-        </div>
-      );
-    });
+    return (
+      <div className="flex flex-wrap gap-5 ">
+        {dataLcp?.map((data, index) => (
+          <div className="inline text-white">
+            <button
+              onClick={() => handleChooseChar(data.maLichChieu)}
+              className="border p-2 mr-3 mt-2 rounded-lg !bg-gray-200 !text-red-500 font-medium w-[200px]"
+              key={index}
+            >
+              {moment(data.ngayChieuGioChieu).format("lll")}
+            </button>
+          </div>
+        ))}
+      </div>
+    );
   };
 
   return (
     <div
-      className="container mx-auto max-w-7xl h-[35rem] py-10 px-10 rounded-xl"
+      className="container mx-auto max-w-7xl space-y-5 rounded-xl py-5 mt-10"
       style={{ backgroundColor: "#fdfcf0" }}
     >
       <Tabs

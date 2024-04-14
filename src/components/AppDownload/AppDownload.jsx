@@ -35,9 +35,7 @@ const Appdownload = () => {
               App miễn phí, tải về ngay
             </button>
             <p className="text-xs md:text-base">
-              <span className="text-red-600 font-semibold  ">
-                Ticket box
-              </span>{" "}
+              <span className="text-red-600 font-semibold  ">Ticket box</span>{" "}
               có hai phiên bản:<span className="mx-2 italic">IOS</span>và
               <span className="mx-2 italic">Android</span>
             </p>

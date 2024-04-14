@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { userLocal } from "../../service/userLocal";
+import { userUpdateThunk } from "./userThunk.jsx";
 // import { loginThunk } from "./userThunk";
 
 const initialState = {
@@ -12,7 +13,9 @@ const userSlice = createSlice({
   reducers: {
     logOutAction: (state, action) => {
       state.infoUser = null;
+      localStorage.removeItem("token");
       userLocal.delete();
+      window.location.href = "/";
     },
   },
 
@@ -45,7 +48,15 @@ const userSlice = createSlice({
         //rejected => fail
         .addCase(loginThunk.rejected, (state, action) => {
           console.log("Fail");
-        });
+        })
+
+        // case update user
+        .addCase(userUpdateThunk.fulfilled, (state, action) => {
+          state.infoUser = action.payload;
+          userLocal.set(action.payload); //set on lstorage > not re-login after F5
+        })
+        .addCase(userUpdateThunk.pending, (state, action) => {})
+        .addCase(userUpdateThunk.rejected, (state, action) => {});
     });
   },
 });

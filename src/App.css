@@ -32,19 +32,26 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
+
 .ant-tabs-tab.ant-tabs-tab-active .parent__tab {
-   color: red !important; 
+  color: red !important;
 }
+
 .half-right-circle {
   position: relative;
-  width: 50px; /* Adjust width as needed */
-  height: 50px; /* Adjust height as needed */
-  background-color: #ccc; /* Set background color */
-  overflow: hidden; /* Hide overflowing part */
+  width: 50px;
+  /* Adjust width as needed */
+  height: 50px;
+  /* Adjust height as needed */
+  background-color: #ccc;
+  /* Set background color */
+  overflow: hidden;
+  /* Hide overflowing part */
 }
 
 .half-right-circle::before {
@@ -54,6 +61,8 @@
   left: 0;
   width: 50%;
   height: 50%;
-  background-color: #ccc; /* Set the same background color as the container */
-  border-radius: 0% 50% 50% 0%; /* Adjust to create a half-right circle */
+  background-color: #ccc;
+  /* Set the same background color as the container */
+  border-radius: 0% 50% 50% 0%;
+  /* Adjust to create a half-right circle */
 }

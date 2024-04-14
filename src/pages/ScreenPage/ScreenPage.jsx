@@ -1,4 +1,4 @@
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ListChair from "./ListGhe/ListChair";
 import BuyTicket from "./BuyTicket/BuyTicket";
 
@@ -6,12 +6,15 @@ const ScreenPage = () => {
   const { maLichChieu } = useParams();
 
   return (
-    <div className="flex" style={{ backgroundColor: "#fdfcf0" }}>
-      <div className="w-3/5">
+    <div
+      className="flex flex-col xl:flex-row justify-center"
+      style={{ backgroundColor: "#fdfcf0" }}
+    >
+      <div className="w-full">
         <ListChair maLichChieu={maLichChieu} />
       </div>
 
-      <div className="w-2/5">
+      <div className="w-full">
         <BuyTicket maLichChieu={maLichChieu} />
       </div>
     </div>

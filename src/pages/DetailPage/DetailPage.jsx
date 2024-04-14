@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { movieSer } from "../../service/movieService";
 import DetailPageSchedule from "./DetailPageSchedule";
@@ -19,26 +19,33 @@ const DetailPage = () => {
     fetchDetailMovie();
   }, []);
 
+  const myRef = useRef(null);
+  const executeScroll = () =>
+    myRef.current.scrollIntoView({ behavior: "smooth" });
+
   return (
-    <div className="bg-gray-700 py-10">
+    <div className="bg-gray-700 py-5 md:px-">
       {/* Chi tiết phim  */}
-      <div className="px-3 py-10 mx-64">
-        <div className="flex">
-          <div className="w-2/6 h-fit">
+      <div className="px-3">
+        <div className="flex flex-col md:flex-row md:gap-10 justify-center">
+          <div className="w-full md:max-w-[500px] h-fit">
             <img
               src={dataMovie?.hinhAnh}
-              className="w-64 h-96 rounded-2xl"
+              className="w-full h-full rounded-2xl"
               alt=""
             />
           </div>
-          <div className="w-3/6 text-white space-y-4 mr-20">
-            <p className="text-xl font-medium pb-5">{dataMovie?.tenPhim}</p>
-            <p className="text-sm pr-20 pb-5">{dataMovie?.moTa}</p>
-            <button className="bg-orange-500 text-white p-2 rounded transition-all hover:bg-orange-700">
+          <div className=" text-white space-y-4 md:max-w-[550px]">
+            <p className="text-2xl font-medium pb-5">{dataMovie?.tenPhim}</p>
+            <p className="text-sm  pb-5">{dataMovie?.moTa}</p>
+            <button
+              className="bg-orange-500 text-white p-2 rounded transition-all hover:bg-orange-700"
+              onClick={executeScroll}
+            >
               Buy ticket
             </button>
           </div>
-          <div className="w-1/6 text-[5.5rem] text-orange-500 px-auto">
+          <div className="text-[5.5rem] text-orange-500 px-auto">
             <i class="fa-regular fa-face-smile"></i>
             <div className="flex text-[1rem]">
               <i class="fa-solid fa-star"></i>
@@ -52,9 +59,9 @@ const DetailPage = () => {
       </div>
 
       {/* Lịch chiếu phim  */}
-      <div className="py-10 mx-64">
+      <section className="m-3 pt-5" ref={myRef}>
         <DetailPageSchedule idMovie={idMovie} />
-      </div>
+      </section>
     </div>
   );
 };

@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 .footer {
   background-color: #0a2029;
   box-shadow: 0 -2px 4px #fff;
@@ -19,6 +29,7 @@
     padding-left: 12px;
     margin-bottom: 12px;
     font-weight: bold;
+
     &::before {
       position: absolute;
       top: 0;
@@ -76,6 +87,7 @@
   .mobile-app {
     flex-direction: row;
   }
+
   .mobile-app .app__item {
     font-size: 2.5rem;
   }
@@ -92,9 +104,11 @@
     margin-top: 0px;
     padding-top: 10px;
   }
+
   .footer__top {
     padding-bottom: 20px;
   }
+
   .footer__bot {
     padding: 16px 0;
     font-size: 14px;

@@ -1,43 +1,31 @@
-// import axios from "axios";
-import { useFormik } from "formik";
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
 import * as yup from "yup";
 import { useDispatch } from "react-redux";
 import { loginThunk } from "../../redux/userReducer/userThunk";
-import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
-  const dispatch = useDispatch(); //hook dispatch
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const formLogin = useFormik({
-    //formik fast check validation
     initialValues: {
       taiKhoan: "",
       matKhau: "",
     },
-    // check validation before dispatch
-    onSubmit: (value) => {
-      const navigateCus = () => {
-        navigate("/");
-      };
-      dispatch(loginThunk({ value, navigateCus }));
+    onSubmit: (values) => {
+      dispatch(loginThunk(values));
     },
     validationSchema: yup.object().shape({
-      taiKhoan: yup
-        .string()
-        .required("Vui lòng nhập tài khoản")
-        .min(4, "Tài khoản ít nhất 4 chữ"),
-      matKhau: yup
-        .string()
-        .required("Vui lòng nhập mật khẩu")
-        .min(4, "Mật khẩu ít nhất 4 chữ"),
+      taiKhoan: yup.string().required("Vui lòng nhập tài khoản"),
+      matKhau: yup.string().required("Vui lòng nhập mật khẩu"),
     }),
   });
 
   return (
-    <div className="">
+    <div className="max-w-md mx-auto mt-10">
       <form
-        action=""
         className="border p-3 rounded-md space-y-3"
         onSubmit={formLogin.handleSubmit}
       >
@@ -54,7 +42,7 @@ const LoginPage = () => {
             onChange={formLogin.handleChange}
             value={formLogin.values.taiKhoan}
           />
-          <p className="text-red-500 h-3">{formLogin.errors.taiKhoan}</p>
+          <p className="text-red-500">{formLogin.errors.taiKhoan}</p>
         </div>
         <div>
           <label className="text-sm font-medium" htmlFor="matKhau">
@@ -68,16 +56,21 @@ const LoginPage = () => {
             onChange={formLogin.handleChange}
             value={formLogin.values.matKhau}
           />
+          <p className="text-red-500">{formLogin.errors.matKhau}</p>
         </div>
-        <p className="text-red-500 h-3">{formLogin.errors.matKhau}</p>
-
         <button
           type="submit"
-          className="bg-green-500 text-white rounded p-2 mt-2"
+          className="bg-green-500 text-white rounded p-2 mt-2 w-full"
         >
           Đăng nhập
         </button>
       </form>
+      <div className="text-center mt-4">
+        <span className="mr-2">Chưa có tài khoản?</span>
+        <Link to="/auth/signup" className="text-blue-500">
+          Đăng kí ngay
+        </Link>
+      </div>
     </div>
   );
 };
