@@ -5,9 +5,9 @@ import {
   turnOnLoading,
 } from "../redux/loadingReducer/loadingSlice";
 export const BASE_URL = "https://movienew.cybersoft.edu.vn";
-export const MA_NHOM = "GP09";
+export const MA_NHOM = "GP02";
 export const TOKEN_CYBER =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA2NCIsIkhldEhhblN0cmluZyI6IjA4LzA5LzIwMjQiLCJIZXRIYW5UaW1lIjoiMTgyNTc1MzYwMDAwMCIsIm5iZiI6MTY5NTkyMDQwMCwiZXhwIjoxNzI1OTAxMjAwfQ.OKsfWEoxxNGCfaW1Y-0XJaFv5CZv6A2aoWlqLkFT-TA";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA2NCIsIkhldEhhblN0cmluZyI6IjA4LzA5LzIwMjQiLCJIZXRIYW5UaW1lIjoiMTkyNTc1MzYwMDAwMCIsIm5iZiI6MTY5NTkyMDQwMCwiZXhwIjoxNzI1OTAxMjAwfQ.GnxBcoI8VHQ3CFhIlWt2KVSYhXw_nq90jHAatUzn1K0";
 
 export const http = axios.create({
   baseURL: BASE_URL,

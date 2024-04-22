@@ -14,6 +14,8 @@ const ListMovie = () => {
   const fetchListMovie = async () => {
     try {
       const response = await movieSer.getListMovie();
+      console.log("check: ", response);
+
       setDataMovieList(response.data.content);
     } catch (error) {
       console.error("Error fetching movie list:", error);
